@@ -13,4 +13,4 @@ pipelines:
             deployment: test
             # trigger: manual  # Uncomment to make this a manual deployment.
             script:
-              - echo "Deploying to test environment"
+              - echo "Deploying to test environment ee"
