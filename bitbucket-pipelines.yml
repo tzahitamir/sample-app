@@ -9,9 +9,8 @@ pipelines:
   default:
     - parallel:
         - step:
-            name: Build and Test
-            caches:
-              - node
+            name: Deploy to test
+            deployment: test
+            # trigger: manual  # Uncomment to make this a manual deployment.
             script:
-              -  apt install -y nodejs
-              -  npm install express
+              - echo "Deploying to test environment"
