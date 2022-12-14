@@ -1,6 +1,6 @@
 #  Template NodeJS build
 
-#  This template allows you to validate your NodeJS code.
+# a This template allows you to validate your NodeJS code.
 #  The workflow allows running tests and code linting on the default branch.
 
 image: ubuntu:22.04
