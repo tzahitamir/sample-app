@@ -1,4 +1,3 @@
-#This is the script to be used by Jenkins
 pipeline {
     agent any
 
