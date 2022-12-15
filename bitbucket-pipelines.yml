@@ -1,6 +1,6 @@
 #  Template NodeJS build
 
-#  This template allows you to validate your NodeJS code.
+# a This template allows you to validate your NodeJS code.
 #  The workflow allows running tests and code linting on the default branch.
 
 image: ubuntu:22.04
@@ -9,9 +9,8 @@ pipelines:
   default:
     - parallel:
         - step:
-            name: Build and Test
-            caches:
-              - node
+            name: Deploy to test
+            deployment: test
+            ## trigger: manual  # Uncomment to make this a manual deployment.
             script:
-              -  apt install -y nodejs
-              -  npm install express
+              - echo "Deploying to test environment ee"
