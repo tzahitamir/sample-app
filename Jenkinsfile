@@ -14,7 +14,7 @@ pipeline {
        					}
 						if (env.GIT_BRANCH =~ 'PR-') 
 						{
-		 					echo 'triger a PR flow'
+		 					echo 'triger a  PR flow'
 							
        					}		
 					}	
