@@ -11,9 +11,9 @@ pipeline {
 		 					echo 'triger a build for master'
 							sh '/home/ubuntu/scripts/repo/test/master/master-build.sh'
        					}
-						if (env.GIT_BRANCH =~ 'PR-') 
+						if (env.GIT_BRANCH == 'production') 
 						{
-		 					echo 'triger a  PR flow'
+		 					echo 'triger a production flow'
 							
        					}		
 					}	
