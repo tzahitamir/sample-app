@@ -10,7 +10,7 @@ pipeline {
 				 	if (env.GIT_BRANCH == 'master') 
 						{
 		 					echo 'triger a build for master'
-							sh '/home/ubuntu/scripts/1.sh'
+							sh '/home/ubuntu/scripts/repo/test/master/master-build.sh'
        					}	
 					}	
     			}
