@@ -10,7 +10,7 @@ pipeline {
 						{
 		 					echo 'trigger a build for master'
 							docker.image('ubuntu').inside {
-  								 sh '/home/ubuntu/scripts/repo/test/master/master-build.sh'
+  								 sh '/var/lib/jenkins/workspace/scripts/payplus/test/master/master-build.sh'
 								}
        					}
 						if (env.GIT_BRANCH == 'production') 
