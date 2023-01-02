@@ -10,7 +10,7 @@ pipeline {
         {
            steps{
                 script{
-                        docker.withRegistry('https://713117837264.dkr.ecr.eu-west-2.amazonaws.com/payplus', 'ecr:eu-west-2:aws-credentials')
+                        docker.withRegistry('https://713117837264.dkr.ecr.eu-west-2.amazonaws.com', 'ecr:eu-west-2:aws-credentials')
                             {
                             app.push("${env.BUILD_NUMBER}")
                             app.push("latest")
