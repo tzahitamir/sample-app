@@ -6,6 +6,15 @@ pipeline {
                 sh 'node --version'
             }
         }
+	stage ('build')
+	{
+		steps {
+	          script{
+		app = docker.build("payplus")			
+		}		
+		}
+	}
+		
         stage ('Docker build and push')
         {
            steps{
