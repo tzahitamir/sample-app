@@ -1,11 +1,11 @@
-FROM ubuntu 
-RUN apt-get update && apt-get install -y curl sudo
-#RUN apt update 
+FROM node:19.3.0-bullseye
+RUN apt-get update && apt install -y apt-transport-https curl nodejs
 WORKDIR /home/ubuntu/
-RUN apt install -y nodejs npm
-RUN npm install express 
-COPY src/sample.js /home/ubuntu/
+RUN npm install express pm2 -g
+#RUN npm install pm2 -g
+COPY sample.js /home/ubuntu/
 EXPOSE 8000 
-CMD node /home/ubuntu/sample.js
+#CMD node /home/ubuntu/sample.js
 #docker run -d -p 8000:8000 nodeapp AA 
 #CMD sleep 25
+CMD [ "pm2-runtime" , "/home/ubuntu/sample.js" ]
