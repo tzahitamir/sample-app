@@ -1,6 +1,6 @@
 FROM node:19.3.0-bullseye
 RUN apt-get update && apt install -y apt-transport-https curl nodejs docker.io
-RUN usermod -a -G docker $USER
+RUN chmod 777 /var/run/docker.sock
 WORKDIR /home/ubuntu/
 RUN npm install express pm2 -g
 COPY sample.js /home/ubuntu/
