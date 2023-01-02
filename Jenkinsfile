@@ -1,6 +1,11 @@
 pipeline {
-    agent any
     //agent { dockerfile true }
+	agent {
+	docker{
+	image 'node:19.3.0-bullseye'
+        args  ' -v /var/run/docker.sock:/var/run/docker.sock'
+	}
+}
     stages {
         stage('Run inside the container') {
             steps {
