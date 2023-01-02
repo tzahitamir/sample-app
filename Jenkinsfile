@@ -1,5 +1,6 @@
 pipeline {
-    agent { dockerfile true }
+    agent any
+    //agent { dockerfile true }
     stages {
         stage('Run inside the container') {
             steps {
