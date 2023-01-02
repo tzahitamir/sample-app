@@ -2,7 +2,6 @@ FROM node:19.3.0-bullseye
 RUN apt-get update && apt install -y apt-transport-https curl nodejs
 WORKDIR /home/ubuntu/
 RUN npm install express pm2 -g
-#RUN npm install pm2 -g
 COPY sample.js /home/ubuntu/
 EXPOSE 8000 
 #CMD node /home/ubuntu/sample.js
