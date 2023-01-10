@@ -1,5 +1,5 @@
 FROM node:19.3.0-bullseye
-RUN apt-get update && apt install -y apt-transport-https curl nodejs git-all
+RUN apt-get update && apt install -y apt-transport-https curl nodejs
 WORKDIR /home/ubuntu/
 RUN npm install express pm2 -g
 COPY sample.js /home/ubuntu/
