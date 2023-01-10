@@ -14,16 +14,18 @@ pipeline {
         }
         stage ('build')
             {
-              //  steps {
+                steps {
+                	sh 'echo build stage'
                 //  script{
-                //app = docker.build("payplus")
-                //    }
-                //}
+                	//app = docker.build("payplus")
+                	//    }
+                	}
             }
 
         stage ('Docker build and push')
             {
            steps{
+               	sh 'echo build docker stage'
  //               script{
   //                      docker.withRegistry('https://713117837264.dkr.ecr.eu-west-2.amazonaws.com','ecr:eu-west-2:aws-tzahi')
    //                         {
