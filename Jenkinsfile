@@ -10,6 +10,7 @@ pipeline {
         stage('Run inside the container') {
             steps {
                 sh 'node --version'
+                sh 'git --version'
             }
         }
         stage ('build')
