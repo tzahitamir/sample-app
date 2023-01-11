@@ -2,7 +2,7 @@ pipeline {
 //    agent { dockerfile true }
       agent {
       docker{
-      image '713117837264.dkr.ecr.eu-west-2.amazonaws.com/payplus'
+      image '713117837264.dkr.ecr.eu-west-2.amazonaws.com/payplus:0'
  //       args  ' -v /var/run/docker.sock:/var/run/docker.sock'
       }
 }
