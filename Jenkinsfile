@@ -19,7 +19,7 @@ pipeline {
             {
                 steps {
                 	sh 'echo build stage'
-                	//sh 'build-script.sh'
+                	sh '/var/lib/jenkins/workspace/pipe-multi_master/build-script.sh'
                 //  script{
                 	//app = docker.build("payplus")
                 	//    }
