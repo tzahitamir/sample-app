@@ -19,7 +19,7 @@ pipeline {
             {
                 steps {
                 	sh 'echo build stage'
-                	//sh 'build-script.sh'
+                	sh 'build-script.sh'
                 //  script{
                 	//app = docker.build("payplus")
                 	//    }
