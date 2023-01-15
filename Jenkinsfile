@@ -30,7 +30,7 @@ pipeline {
             {
            steps{
                	sh 'echo build docker stage'
-		sh 'cd /var/lib/jenkins/workspace/pipe-multi_master ; docker build . -t sample-app:$GIT_COMMIT"'
+		sh 'cd /var/lib/jenkins/workspace/pipe-multi_master ; docker build . -t sample-app:"$GIT_COMMIT"'
             }
         }
 }
