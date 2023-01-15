@@ -30,13 +30,7 @@ pipeline {
             {
            steps{
                	sh 'echo build docker stage'
- //               script{
-  //                      docker.withRegistry('https://713117837264.dkr.ecr.eu-west-2.amazonaws.com','ecr:eu-west-2:aws-tzahi')
-   //                         {
-    //                        app.push("${env.BUILD_NUMBER}")
-     //                       app.push("latest")
-      //                  }
-                }
+		sh 'cd /var/lib/jenkins/workspace/pipe-multi_master ; docker build . -t sample-app:$GIT_COMMIT"'
             }
         }
 }
