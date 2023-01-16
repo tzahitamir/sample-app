@@ -1,5 +1,5 @@
 pipeline {
-//    agent { dockerfile true }
+////    agent { dockerfile true }
       agent {
       docker{
       alwaysPull true
