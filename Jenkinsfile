@@ -5,7 +5,7 @@ pipeline {
       alwaysPull true
       image '713117837264.dkr.ecr.eu-west-2.amazonaws.com/payplus:latest'
       registryUrl 'https://713117837264.dkr.ecr.us-west-2.amazonaws.com'
-      registryCredentialsId 'ecr:us-west-2:aws-credentials'	
+      registryCredentialsId 'ecr:eu-west-2:aws-credentials'	
       args  '-v /var/run/docker.sock:/var/run/docker.sock'
       }
 }
