@@ -3,7 +3,7 @@ pipeline {
       agent {
       docker{
       image '713117837264.dkr.ecr.eu-west-2.amazonaws.com/payplus:1'
-      args  ' -v /var/run/docker.sock:/var/run/docker.sock'
+      args  '-v /var/run/docker.sock:/var/run/docker.sock'
       }
 }
     stages {
