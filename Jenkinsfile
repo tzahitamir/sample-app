@@ -15,7 +15,7 @@ pipeline {
                 sh 'node --version'
                 sh 'git --version'
 		sh 'rm -rf test'
-	//	sh 'git clone git@bitbucket.org:payplusv2/test.git'
+		sh 'git clone git@bitbucket.org:payplusv2/test.git'
             }
         }
         stage ('build')
@@ -33,8 +33,10 @@ pipeline {
             {
            steps{
                	sh 'echo build docker stage'
-//		sh 'cd /var/lib/jenkins/workspace/pipe-multi_master ; docker build . -t sample-app:"$GIT_COMMIT"'
+		sh 'cd /var/lib/jenkins/workspace/pipe-multi_master ; docker build . -t 713117837264.dkr.ecr.eu-west-2.amazonaws.com/payplus:"$GIT_COMMIT"'
+//		sh 'docker tag payplus:latest 713117837264.dkr.ecr.eu-west-2.amazonaws.com/payplus:latest
 		sh 'echo perform docker push' 
+		sh 'docker push 713117837264.dkr.ecr.eu-west-2.amazonaws.com/payplus:"$GIT_COMMIT"'
             }
         }
 }
