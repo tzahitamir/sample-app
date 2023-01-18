@@ -60,6 +60,8 @@ pipeline {
         {
             steps{
                  sh 'echo deploy to k8s'  
+		 sh 'cat /var/lib/jenkins/repo/ops/k8s/deployment/sample-app.yaml.template | sed -e "s/imagename/713117837264.dkr.ecr.eu-west-2.amazonaws.com\/payplus:$GIT_COMMIT/" > sample-app.$GIT_COMMIT.yaml' 
+		 sh 'kubectl apply -f sample-app.$GIT_COMMIT.yaml' 
             }
         }  
 
