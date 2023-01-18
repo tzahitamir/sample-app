@@ -3,7 +3,7 @@ const os = require('os');
 
 //#console.log("bogo server starting and listening on 8080...");
 
-//var handler = function(request, response) {
+////var handler = function(request, response) {
 //#  console.log("Received request from " + request.connection.remoteAddress);
 ///#console.log("bogo server starting and listening on 8000...");
 
