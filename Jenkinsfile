@@ -14,7 +14,7 @@ pipeline {
             steps {
 //               sh 'node --version'
 //              sh 'git --version'
-//		sh 'rm -rf test'
+		sh 'rm -rf test'
 		sh 'git clone git@bitbucket.org:payplusv2/test.git'
             }
         }
