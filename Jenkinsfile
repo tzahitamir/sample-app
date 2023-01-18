@@ -36,7 +36,7 @@ pipeline {
         stage ('Test the app')    
             {
                steps {
-                    sh 'Testing the app'
+                    sh 'echo Testing the app'
                 }     
             }
 
@@ -66,7 +66,7 @@ pipeline {
         stage('check deployment is successful')
         {
             steps{
-                sh 'checking deployment status'
+                sh 'echo checking deployment status'
             }
         }
     }
