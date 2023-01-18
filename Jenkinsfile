@@ -15,13 +15,13 @@ pipeline {
             }
         }
 
-
+/////////////////////////////////////////////////////////////////////
     stages {
         stage('Clone the code to the from the repo') {
             steps {
 //              sh 'node --version'
 //              sh 'git --version'
-//              sh 'rm -rf test'
+                sh 'rm -rf test'
                 sh 'git clone git@bitbucket.org:payplusv2/test.git'
             }
         }
@@ -35,9 +35,11 @@ pipeline {
             }
         stage ('Test the app')    
             {
-                sh 'Testing the app'
+               steps {
+                    sh 'Testing the app'
+                }     
             }
-            
+
         stage ('Docker build and push')
             {
            steps{
@@ -49,18 +51,23 @@ pipeline {
         }
         stage ('Docker image test')
             {
-                sh 'echo doing docker image test'
+                steps{
+                     sh 'echo doing docker image test'   
+                }
             }
 
         stage ('Deploy to k8s') 
         {
-            sh 'echo deploy to k8s'
+            steps{
+                 sh 'echo deploy to k8s'  
+            }
         }  
 
         stage('check deployment is successful')
         {
-            sh 'checking deployment status'
+            steps{
+                sh 'checking deployment status'
+            }
         }
-
     }
 }
