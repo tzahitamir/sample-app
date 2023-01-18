@@ -12,8 +12,9 @@ pipeline {
     stages {
         stage('Run inside the container') {
             steps {
-//               sh 'node --version'
+//              sh 'node --version'
 //              sh 'git --version'
+		sh 'printenv'
 		sh 'rm -rf test'
 		sh 'git clone git@bitbucket.org:payplusv2/test.git'
             }
