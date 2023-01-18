@@ -1,5 +1,5 @@
 pipeline {
-//    agent { dockerfile true }
+////    agent { dockerfile true }
       agent {
       docker{
       alwaysPull true
@@ -12,9 +12,9 @@ pipeline {
     stages {
         stage('Run inside the container') {
             steps {
-                sh 'node --version'
-                sh 'git --version'
-		sh 'rm -rf test'
+//               sh 'node --version'
+//              sh 'git --version'
+//		sh 'rm -rf test'
 		sh 'git clone git@bitbucket.org:payplusv2/test.git'
             }
         }
@@ -23,9 +23,6 @@ pipeline {
                 steps {
                 	sh 'echo build stage'
                 	sh '/var/lib/jenkins/workspace/pipe-multi_master/build-script.sh'
-                //  script{
-                	//app = docker.build("payplus")
-                	//    }
                 	}
             }
 
