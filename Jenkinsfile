@@ -7,7 +7,7 @@ pipeline {
 
     agent {
       docker{
-      alwaysPull true
+//      alwaysPull true
 // NEED TO PUSH THE BASE IMAGE!!!!!!!!!
 
       image '713117837264.dkr.ecr.eu-west-2.amazonaws.com/payplus:2'
