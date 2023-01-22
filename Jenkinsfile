@@ -8,7 +8,9 @@ pipeline {
     agent {
       docker{
       alwaysPull true
-      image '713117837264.dkr.ecr.eu-west-2.amazonaws.com/payplus:1'
+// NEED TO PUSH THE BASE IMAGE!!!!!!!!!
+
+      image '713117837264.dkr.ecr.eu-west-2.amazonaws.com/payplus:2'
       registryUrl 'https://713117837264.dkr.ecr.eu-west-2.amazonaws.com'
       registryCredentialsId 'ecr:eu-west-2:aws-credentials'
       args  '-v /var/run/docker.sock:/var/run/docker.sock'
