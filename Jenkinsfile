@@ -7,10 +7,9 @@ pipeline {
 
     agent {
       docker{
-//      alwaysPull true
-// NEED TO PUSH THE BASE IMAGE!!!!!!!!!
+      alwaysPull true
 
-      image '713117837264.dkr.ecr.eu-west-2.amazonaws.com/payplus:2'
+      image '713117837264.dkr.ecr.eu-west-2.amazonaws.com/base-image-sample-app:0'
       registryUrl 'https://713117837264.dkr.ecr.eu-west-2.amazonaws.com'
       registryCredentialsId 'ecr:eu-west-2:aws-credentials'
       args  '-v /var/run/docker.sock:/var/run/docker.sock'
@@ -19,8 +18,9 @@ pipeline {
 
 /////////////////////////////////////////////////////////////////////
     stages {
-        stage('Clone the code to the from the repo') {
+        stage('Clone the repo') {
             steps {
+		sh 'printenv'
 //              sh 'node --version'
 //              sh 'git --version'
                 sh 'rm -rf test'
@@ -47,9 +47,9 @@ pipeline {
             {
            steps{
                 sh 'echo build docker stage'
-                sh 'cd /var/lib/jenkins/workspace/pipe-multi_master ; docker build . -t 713117837264.dkr.ecr.eu-west-2.amazonaws.com/payplus:"$GIT_COMMIT"'
+                sh 'cd /var/lib/jenkins/workspace/pipe-multi_master ; docker build . -t 713117837264.dkr.ecr.eu-west-2.amazonaws.com/sample-app:"$GIT_COMMIT"'
                 sh 'echo perform docker push'
-                sh 'docker push 713117837264.dkr.ecr.eu-west-2.amazonaws.com/payplus:"$GIT_COMMIT"'
+                sh 'docker push 713117837264.dkr.ecr.eu-west-2.amazonaws.com/sample-app:"$GIT_COMMIT"'
             }
         }
         stage ('Docker image test')
