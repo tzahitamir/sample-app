@@ -24,7 +24,9 @@ pipeline {
 //              sh 'node --version'
 //              sh 'git --version'
                 sh 'rm -rf test'
+                sh 'rm -rf ops'
                 sh 'git clone git@bitbucket.org:payplusv2/test.git'
+                sh 'git clone git@bitbucket.org:payplusv2/ops.git'
             }
         }
 
@@ -64,7 +66,7 @@ pipeline {
                  sh 'echo deploy to k8s'  
 //		 sh 'cat /var/lib/jenkins/repo/ops/k8s/deployment/sample-app.yaml.template | sed -e "s/imagename/713117837264.dkr.ecr.eu-west-2.amazonaws.com\\/payplus:$GIT_COMMIT/" > sample-app.$GIT_COMMIT.yaml'
 //		 sh 'kubectl apply -f sample-app.$GIT_COMMIT.yaml'
-		 sh '/usr/local/bin/deploy-to-k8s.sh $GIT_COMMIT'
+//This should be the script for deploy		 sh '/usr/local/bin/deploy-to-k8s.sh $GIT_COMMIT'
             }
         }  
 
