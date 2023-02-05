@@ -1,7 +1,7 @@
 const http = require('http');
 const os = require('os');
 
-////#console.log("bogo server starting and listening on 8080...");
+//#console.log("bogo server starting and listening on 8080...");
 
 //var handler = function(request, response) {
 //  console.log("Received request from " + request.connection.remoteAddress);
