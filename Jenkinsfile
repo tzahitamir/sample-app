@@ -63,10 +63,7 @@ pipeline {
         {
             steps{
                  sh 'echo deploy to k8s'  
-//		 sh 'cat /var/lib/jenkins/repo/ops/k8s/deployment/sample-app.yaml.template | sed -e "s/imagename/713117837264.dkr.ecr.eu-west-2.amazonaws.com\\/payplus:$GIT_COMMIT/" > sample-app.$GIT_COMMIT.yaml'
-//		 sh 'kubectl apply -f sample-app.$GIT_COMMIT.yaml'
-//This should be the script for deploy		 sh '/usr/local/bin/deploy-to-k8s.sh $GIT_COMMIT'
-		sh '/var/lib/jenkins/workspace/pipe-multi_master/ops/k8s/deploy-to-k8s.sh $GIT_COMMIT'
+		 sh '/var/lib/jenkins/workspace/pipe-multi_master/ops/k8s/deploy-to-k8s.sh $GIT_COMMIT'
             }
         }  
 
@@ -74,6 +71,7 @@ pipeline {
         {
             steps{
                 sh 'echo checking deployment status'
+		sh '/var/lib/jenkins/workspace/pipe-multi_master/ops/k8s/sample-app/validate-k8s-deploy.sh'		
             }
         }
     }
