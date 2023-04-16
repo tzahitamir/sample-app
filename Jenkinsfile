@@ -26,7 +26,7 @@ pipeline {
 //              sh 'git --version'
                 sh 'rm -rf test'
                 sh 'git clone git@bitbucket.org:payplusv2/test.git'
-		sh 'cd /var/lib/jenkins/workspace/pipe-multi_master/ops; git pull'
+//		sh 'cd /var/lib/jenkins/workspace/multi_master/ops; git pull'
             }
         }
 
@@ -34,7 +34,7 @@ pipeline {
             {
                 steps {
                         sh 'echo build stage'
-                        sh '/var/lib/jenkins/workspace/pipe-multi_master/build-script.sh'
+                        sh '/var/lib/jenkins/workspace/multi_master/build-script.sh'
                         }
             }
         stage ('Test the app')    
@@ -48,9 +48,9 @@ pipeline {
             {
            steps{
                 sh 'echo build docker stage'
-                sh 'cd /var/lib/jenkins/workspace/pipe-multi_master ; docker build . -t 713117837264.dkr.ecr.eu-west-2.amazonaws.com/sample-app:"$GIT_COMMIT" --pull --force-rm --no-cache'
+//                sh 'cd /var/lib/jenkins/workspace/pipe-multi_master ; docker build . -t 713117837264.dkr.ecr.eu-west-2.amazonaws.com/sample-app:"$GIT_COMMIT" --pull --force-rm --no-cache'
                 sh 'echo perform docker push'
-                sh 'docker push 713117837264.dkr.ecr.eu-west-2.amazonaws.com/sample-app:"$GIT_COMMIT"'
+ //               sh 'docker push 713117837264.dkr.ecr.eu-west-2.amazonaws.com/sample-app:"$GIT_COMMIT"'
             }
         }
         stage ('Docker image test')
@@ -69,7 +69,7 @@ pipeline {
 //              }	
             steps{
                  sh 'echo deploy to k8s'  
-		 sh '/var/lib/jenkins/workspace/pipe-multi_master/ops/k8s/deploy-to-k8s.sh $GIT_COMMIT'
+		 //sh '/var/lib/jenkins/workspace/pipe-multi_master/ops/k8s/deploy-to-k8s.sh $GIT_COMMIT'
             }
         }  
 
@@ -77,7 +77,7 @@ pipeline {
         {
             steps{
                 sh 'echo checking deployment status'
-		sh '/var/lib/jenkins/workspace/pipe-multi_master/ops/k8s/sample-app/validate-k8s-deploy.sh'		
+		//sh '/var/lib/jenkins/workspace/pipe-multi_master/ops/k8s/sample-app/validate-k8s-deploy.sh'		
             }
         }
     }
