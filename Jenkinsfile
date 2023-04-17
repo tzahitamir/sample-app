@@ -63,13 +63,13 @@ pipeline {
         stage ('Deploy to k8s') 
         {
 // Add user manual approval before deploy to prod
-//	    input {
-//                message "Ready to deploy?"
-//               ok "Yes"
-////              }	
+	    input {
+                message "Ready to deploy?"
+               ok "Yes"
+              }	
             steps{
                  sh 'echo deploy to k8s'  
-		 //sh '/var/lib/jenkins/workspace/pipe-multi_master/ops/k8s/deploy-to-k8s.sh $GIT_COMMIT'
+//		 //sh '/var/lib/jenkins/workspace/pipe-multi_master/ops/k8s/deploy-to-k8s.sh $GIT_COMMIT'
             }
         }  
 
