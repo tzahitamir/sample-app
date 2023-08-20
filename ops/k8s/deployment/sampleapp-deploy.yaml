@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+  labels:
+    app: sample-app
+  name: sample-app
+  namespace: dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sample-app
+  template:
+    metadata:
+      labels:
+        app: sample-app
+    spec:
+      containers:
+      - image: 713117837264.dkr.ecr.eu-west-2.amazonaws.com/sample-app:latest
+        name: sample-app
+        volumeMounts:
+        - name: newsecret
+          mountPath: "/etc/newsecret"
+          readOnly: true
+        ports:
+        - containerPort: 8000
+          protocol: TCP
+        resources:
+          requests:
+            cpu: 1m
+      volumes:
+      - name: newsecret
+        secret:
+          secretName: newsecret
