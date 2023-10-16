@@ -5,16 +5,9 @@ metadata:
   namespace: dev
 spec:
   ports:
-  - nodePort: 32231
-    port: 8000
+  - port: 80
     protocol: TCP
     targetPort: 8000
   selector:
     app: sample-app
-  sessionAffinity: ClientIP
-  sessionAffinityConfig:
-    clientIP:
-      timeoutSeconds: 10800
-  type: NodePort
-status:
-  loadBalancer: {}
+  type: ClusterIP
