@@ -1,0 +1,5 @@
+#kubectl create configmap cm-env --from-file=env-file.txt
+# set the right ns
+
+HOST_NAME="server2.com"
+APP_PORT_NUMBER="3000"

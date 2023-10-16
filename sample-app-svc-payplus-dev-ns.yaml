@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: sample-app
+  namespace: payplus-dev-ns
+spec:
+  type: NodePort
+  selector:
+    app: sample-app
+  ports:
+    - name: sample-app-port
+      port: 8000
+      protocol: TCP
+      targetPort: 8000  

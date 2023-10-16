@@ -1,3 +1,4 @@
+#sample app
 FROM node:19.3.0-bullseye
 RUN apt-get update && apt install -y apt-transport-https curl nodejs vim \
 && npm install express pm2 -g \
