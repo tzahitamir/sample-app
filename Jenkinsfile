@@ -26,16 +26,10 @@ pipeline {
             }        
                         steps {
                         sh 'echo IN PRODUCTION BRANCH'
+                        sh 'printenv'
                     }
            
-            steps {
-		sh 'printenv'
-//              sh 'node --version'
-//              sh 'git --version'
-         //       sh 'rm -rf test'
-       //         sh 'git clone git@bitbucket.org:payplusv2/test.git'
-//		sh 'cd /var/lib/jenkins/workspace/multi_master/ops; git pull'
-            }
+          
         }
 
         stage ('Build the app')
