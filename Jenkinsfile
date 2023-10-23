@@ -26,9 +26,8 @@ pipeline {
                         sh 'echo IN PRODUCTION BRANCH'
                         //when { anyOf { branch 'production'; branch 'staging' } }
                         // anyOf { branch 'production'; branch 'beta' }
-                }
+                //}
                 
-                when {
                     not{
                         branch 'production'
                         sh 'echo NOT PRODUCTION BRANCH'
@@ -42,8 +41,8 @@ pipeline {
 		sh 'printenv'
 //              sh 'node --version'
 //              sh 'git --version'
-                sh 'rm -rf test'
-                sh 'git clone git@bitbucket.org:payplusv2/test.git'
+         //       sh 'rm -rf test'
+       //         sh 'git clone git@bitbucket.org:payplusv2/test.git'
 //		sh 'cd /var/lib/jenkins/workspace/multi_master/ops; git pull'
             }
         }
@@ -52,7 +51,7 @@ pipeline {
             {
                 steps {
                         sh 'echo build stage'
-                        sh '/var/lib/jenkins/workspace/multi_master/build-script.sh'
+            //            sh '/var/lib/jenkins/workspace/multi_master/build-script.sh'
                         }
             }
         stage ('Test the app')    
@@ -77,20 +76,6 @@ pipeline {
                      sh 'echo doing docker image test'   
                 }
             }
-
-        stage ('Deploy to k8s') 
-        {
-// Add user manual approval before deploy to prod
-	    input {
-                message "Ready to deploy?"
-               ok "Yes"
-              }	
-            steps{
-                 sh 'echo deploy to k8s'  
-//		 //sh '/var/lib/jenkins/workspace/pipe-multi_master/ops/k8s/deploy-to-k8s.sh $GIT_COMMIT'
-            }
-        }  
-
         stage('check deployment is successful')
         {
             steps{
@@ -98,5 +83,6 @@ pipeline {
 		//sh '/var/lib/jenkins/workspace/pipe-multi_master/ops/k8s/sample-app/validate-k8s-deploy.sh'		
             }
         }
+
     }
 }
