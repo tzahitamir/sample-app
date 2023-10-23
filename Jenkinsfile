@@ -23,24 +23,11 @@ pipeline {
 
             when {
                         branch 'production'
+            }        
                         steps {
                         sh 'echo IN PRODUCTION BRANCH'
                     }
-                        //when { anyOf { branch 'production'; branch 'staging' } }
-                        // anyOf { branch 'production'; branch 'beta' }
-                //}
-                
-              //      not{
-              //          branch 'production'
-              //          steps {
-              //          sh 'echo NOT PRODUCTION BRANCH'
-              //          }
-              //      }
-                        
-                        //when { anyOf { branch 'production'; branch 'staging' } }
-                        // anyOf { branch 'production'; branch 'beta' }
-                }
-
+           
             steps {
 		sh 'printenv'
 //              sh 'node --version'
