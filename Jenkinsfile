@@ -30,12 +30,12 @@ pipeline {
                         // anyOf { branch 'production'; branch 'beta' }
                 //}
                 
-                    not{
-                        branch 'production'
-                        steps {
-                        sh 'echo NOT PRODUCTION BRANCH'
-                        }
-                    }
+              //      not{
+              //          branch 'production'
+              //          steps {
+              //          sh 'echo NOT PRODUCTION BRANCH'
+              //          }
+              //      }
                         
                         //when { anyOf { branch 'production'; branch 'staging' } }
                         // anyOf { branch 'production'; branch 'beta' }
