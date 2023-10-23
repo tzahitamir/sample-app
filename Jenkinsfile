@@ -22,8 +22,8 @@ pipeline {
         stage('Clone the repo') {
 
             when {
-                    steps {
                         branch 'production'
+                        steps {
                         sh 'echo IN PRODUCTION BRANCH'
                     }
                         //when { anyOf { branch 'production'; branch 'staging' } }
@@ -31,7 +31,6 @@ pipeline {
                 //}
                 
                     not{
-                        
                         branch 'production'
                         steps {
                         sh 'echo NOT PRODUCTION BRANCH'
