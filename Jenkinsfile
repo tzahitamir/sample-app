@@ -27,9 +27,14 @@ pipeline {
                         steps {
                         sh 'echo IN PRODUCTION BRANCH'
                         sh 'printenv'
-                    }
-           
-          
+                    }    
+        }
+        stage ('Test branch name'){
+        when { not { branch 'master' } }
+        steps {
+                        sh 'echo This is not master branch'
+                        sh 'printenv'
+                    }    
         }
 
         stage ('Build the app')
