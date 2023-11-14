@@ -1,3 +1,4 @@
+const tracer = require('dd-trace').init();
 const http = require('http');
 const os = require('os');
 
