@@ -9,5 +9,5 @@ RUN chmod +x /home/payplus-prod/sample.js \
 
 #USER payplus-prod
 EXPOSE 8000 
-#docker run -d -p 8000:8000 nodeapp AA 
-CMD [ "pm2-runtime" , "/home/payplus-prod/sample.js" ]
+##docker run -d -p 8000:8000 nodeapp AA 
+#CMD [ "pm2-runtime" , "/home/payplus-prod/sample.js" ]
