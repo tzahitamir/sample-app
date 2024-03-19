@@ -16,7 +16,7 @@ pipeline {
             }
         }
 
-/////////////////////////////////////////////////////////////////////
+//GIT_PREVIOUS_SUCCESSFUL_COMMIT
 
     stages {
         stage('Clone the repo') {
