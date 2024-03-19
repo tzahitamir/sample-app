@@ -21,9 +21,9 @@ pipeline {
     stages {
         stage('Clone the repo') {
 
-            when {
-                        branch 'production'
-            }        
+            //when {
+              //          branch 'production'
+            //}        
                         steps {
                         sh 'echo IN PRODUCTION BRANCH'
                         sh 'printenv'
