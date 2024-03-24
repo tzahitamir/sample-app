@@ -9,7 +9,7 @@ pipeline {
       docker{
       alwaysPull true
 
-      image '713117837264.dkr.ecr.eu-west-2.amazonaws.com/base-image-sample-app:0'
+      image '713117837264.dkr.ecr.eu-west-2.amazonaws.com/base_node.14.21.3:latest'
       registryUrl 'https://713117837264.dkr.ecr.eu-west-2.amazonaws.com'
       registryCredentialsId 'ecr:eu-west-2:aws-credentials'
       args  '-v /var/run/docker.sock:/var/run/docker.sock'
