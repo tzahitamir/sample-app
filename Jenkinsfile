@@ -22,7 +22,7 @@ pipeline {
         stage('Clone the repo') {
 
             //when {
-              //          branch 'production'
+              // /         branch 'production'
             //}        
                         steps {
                         sh 'echo IN PRODUCTION BRANCH'
