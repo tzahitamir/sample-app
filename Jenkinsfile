@@ -15,6 +15,20 @@ pipeline {
       args  '-v /var/run/docker.sock:/var/run/docker.sock'
             }
         }
+        
+        node { 
+    stage ("Checkout") {
+
+        scmInfo = checkout scm
+
+        /*...*/
+        echo "scm : ${scmInfo}"
+        echo "${scmInfo.GIT_COMMIT}"
+
+
+    }
+}
+
 
 //GIT_PREVIOUS_SUCCESSFUL_COMMIT
 
