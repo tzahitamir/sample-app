@@ -16,19 +16,7 @@ pipeline {
             }
         }
         
-        node { 
-    stage ("Checkout") {
-
-        scmInfo = checkout scm
-
-        /*...*/
-        echo "scm : ${scmInfo}"
-        echo "${scmInfo.GIT_COMMIT}"
-
-
-    }
-}
-
+        
 
 //GIT_PREVIOUS_SUCCESSFUL_COMMIT
 
@@ -41,6 +29,11 @@ pipeline {
                         steps {
                         sh 'echo IN PRODUCTION BRANCH'
                         sh 'printenv'
+                        scmInfo = checkout scm
+
+        /*...*/
+        echo "scm : ${scmInfo}"
+        echo "${scmInfo.GIT_COMMIT}"
                     }    
         }
 
