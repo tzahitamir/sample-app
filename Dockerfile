@@ -1,6 +1,6 @@
 ##sample app
 FROM node:19.3.0-bullseye
-RUN apt-get update && apt install -y apt-transport-https curl nodejs vim \
+RUN apt-get update && apt install -y apt-transport-https curl nodejs vim git-all\
 && npm install express dd-trace pm2 -g \
 && adduser payplus-prod --uid 1111 --home /home/payplus-prod --gecos "" --disabled-password 
 COPY sample.js /home/payplus-prod
