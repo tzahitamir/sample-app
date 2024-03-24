@@ -29,11 +29,7 @@ pipeline {
                         steps {
                         sh 'echo IN PRODUCTION BRANCH'
                         sh 'printenv'
-                        scmInfo = checkout scm
-
-        /*...*/
-        echo "scm : ${scmInfo}"
-        echo "${scmInfo.GIT_COMMIT}"
+                        
                     }    
         }
 
@@ -43,6 +39,11 @@ pipeline {
             {
                 steps {
                         sh 'echo build stage'
+                        scmInfo = checkout scm
+
+        /*...*/
+        echo "scm : ${scmInfo}"
+        echo "${scmInfo.GIT_COMMIT}"
             //            sh '/var/lib/jenkins/workspace/multi_master/build-script.sh'
                         }
             }
