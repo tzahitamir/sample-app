@@ -70,7 +70,7 @@ pipeline {
         {
             steps{
                 sh 'echo checking deployment status'
-		//sh '/var/lib/jenkins/workspace/pipe-multi_master/ops/k8s/sample-app/validate-k8s-deploy.sh'		
+		///sh '/var/lib/jenkins/workspace/pipe-multi_master/ops/k8s/sample-app/validate-k8s-deploy.sh'		
             }
         }
 
