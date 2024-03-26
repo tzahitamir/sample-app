@@ -5,7 +5,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Checkout code from Bitbucket repository
-                git branch: 'master', credentialsId: 'bitbucket', url: 'https://tzahitamirwittix@bitbucket.org/payplusv2/test.git'
+                git branch: 'master', credentialsId: 'bitbucket', url: 'git@bitbucket.org:payplusv2/test.git'
             }
         }
         stage('Print Previous Successful Commit') {
