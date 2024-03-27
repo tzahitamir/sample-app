@@ -6,6 +6,7 @@ pipeline {
             steps {
                 // Checkout code from Bitbucket repository
                 git branch: 'master', credentialsId: 'bitbucket', url: 'git@bitbucket.org:payplusv2/test.git'
+                 sh 'printenv'
             }
         }
         stage('Print Previous Successful Commit') {
