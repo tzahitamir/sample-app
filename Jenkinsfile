@@ -4,16 +4,17 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                // Checkout code from Bitbucket repository
+                // Checkout code from Bitbucket repository using git step
                 git branch: 'master', credentialsId: 'bitbucket', url: 'git@bitbucket.org:payplusv2/test.git'
-                 sh 'printenv'
             }
         }
-        stage('Print Previous Successful Commit') {
+        stage('Print Checkout Details') {
             steps {
                 script {
-                    // Print the value of GIT_PREVIOUS_SUCCESSFUL_COMMIT
-                    echo "Previous successful commit: ${env.GIT_PREVIOUS_SUCCESSFUL_COMMIT}"
+                    // You can access the Git details directly without using checkout scm again
+                    def checkoutDetails = checkout scm
+                    echo checkoutDetails.toString()
+                    echo "Git details: ${env.BRANCH_NAME} ${env.GIT_COMMIT} ${env.GIT_URL} ${env.GIT_PREVIOUS_SUCCESSFUL_COMMIT}"
                 }
             }
         }
