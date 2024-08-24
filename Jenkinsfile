@@ -1,22 +1,29 @@
 pipeline {
-    agent any
+
+    agent {
+      docker{
+      alwaysPull true
+
+      image '713117837264.dkr.ecr.eu-west-2.amazonaws.com/base_node.16.20-bullseye:latest'
+      registryUrl 'https://713117837264.dkr.ecr.eu-west-2.amazonaws.com'
+      registryCredentialsId 'ecr:eu-west-2:aws-credentials'
+      args  '-v /var/run/docker.sock:/var/run/docker.sock'
+            }
+        }
+
     
+
     stages {
-        stage('Checkout') {
+        stage ('Check k8s ') {
+
             steps {
-                // Checkout code from Bitbucket repository using git step
-                git branch: 'master', credentialsId: 'bitbucket', url: 'git@bitbucket.org:payplusv2/test.git'
+		        sh 'kubectl get pods'
             }
         }
-        stage('Print Checkout Details') {
-            steps {
-                script {
-                    // You can access the Git details directly without using checkout scm again
-                    def checkoutDetails = checkout scm
-                    echo checkoutDetails.toString()
-                    echo "Git details: ${env.BRANCH_NAME} ${env.GIT_COMMIT} ${env.GIT_URL} ${env.GIT_PREVIOUS_SUCCESSFUL_COMMIT}"
-                }
-            }
-        }
+        
+        
+            
+    
+   }
     }
 }
