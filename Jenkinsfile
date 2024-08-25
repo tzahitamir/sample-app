@@ -17,7 +17,10 @@ pipeline {
         stage ('Check k8s ') {
 
             steps {
-		        sh 'kubectl get pods'
+		        sh 'hostname'
+                sh 'kubectl get pods'
+                sh 'sleep 600'
+                
             }
         }
         }
