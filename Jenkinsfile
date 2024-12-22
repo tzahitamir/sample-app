@@ -14,12 +14,10 @@ pipeline {
     
 
     stages {
-        stage ('Check k8s ') {
+        stage ('Test ') {
 
             steps {
-		        sh 'hostname && sleep 600'
-                sh 'kubectl get pods'
-                
+		        sh '$WORKSPACE/ops/k8s/deployment/test.bash'
                 
             }
         }
