@@ -21,12 +21,7 @@ pipeline {
     stages {
         stage('Clone the repo') {
             steps {
-		sh 'printenv'
-//              sh 'node --version'
-//              sh 'git --version'
-                sh 'rm -rf test'
-                sh 'git clone git@bitbucket.org:payplusv2/test.git'
-//		sh 'cd /var/lib/jenkins/workspace/multi_master/ops; git pull'
+//		sh 'printenv'
             }
         }
 
@@ -34,7 +29,7 @@ pipeline {
             {
                 steps {
                         sh 'echo build stage'
-                        sh '/var/lib/jenkins/workspace/multi_master/build-script.sh'
+                     //   sh '/var/lib/jenkins/workspace/multi_master/build-script.sh'
                         }
             }
         stage ('Test the app')    
