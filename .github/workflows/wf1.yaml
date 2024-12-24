@@ -9,6 +9,7 @@ on:
     branches:
       - main
       - 'feature/*'
+      - production
 #env:
    # MONGO_URI: 'mongodb+srv://supercluster.d83jj.mongodb.net/superDate'
    # MONGO_USERNAME: ${{ vars.MONGO_USERNAME }}
