@@ -1,0 +1,23 @@
+name: Sample app workflow
+
+on: 
+  #workflow_dispatch allows for manual dispatch
+  workflow_dispatch:
+
+    #this will run on push events
+  push:
+    branches:
+      - main
+      - 'feature/*'
+env:
+   # MONGO_URI: 'mongodb+srv://supercluster.d83jj.mongodb.net/superDate'
+   # MONGO_USERNAME: ${{ vars.MONGO_USERNAME }}
+   # MONGO_PASSWORD: ${{ secrets.MONGO_PASSWORD }}
+   #USERNAME:  ${{ vars.MONGO_USERNAME }}
+jobs: 
+  hello-world:
+    
+    runs-on: ubuntu-latest
+      steps:
+        - name: checkout repo
+          uses: actions/checkout@v4
