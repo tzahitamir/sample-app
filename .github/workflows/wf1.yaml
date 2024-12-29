@@ -48,7 +48,7 @@ jobs:
       - name: upload-dist 
         uses: actions/upload-artifact@v3
         with:
-          name: dist upload
+          name: dist-folder 
           path: ./dist
 
   build_docker:
@@ -58,7 +58,7 @@ jobs:
       - name: Download dist
         uses: actions/download-artifact@v3
         with:
-          name: upload-dist
+          name: dist-folder
           path: ./dist  
       - name: check dist
         run: ls dist      
