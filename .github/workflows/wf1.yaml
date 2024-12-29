@@ -28,7 +28,9 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 22.12
-      - name: install dependencies
-        run: npm install
+          cache: 'npm'
+      - run: npm i  
+    #  - name: install dependencies
+    #    run: npm install
       - name: install dependencies
         run: npm run build
