@@ -12,7 +12,7 @@ on:
       - production
 env:
   USERNAME:  ${{ vars.USERNAME }}
-  
+
    # MONGO_URI: 'mongodb+srv://supercluster.d83jj.mongodb.net/superDate'
    # MONGO_USERNAME: ${{ vars.MONGO_USERNAME }}
    # MONGO_PASSWORD: ${{ secrets.MONGO_PASSWORD }}
@@ -24,3 +24,11 @@ jobs:
     steps:
       - name: checkout repo
         uses: actions/checkout@v4
+      - name: Setup NodeJS v18
+        uses: actions/setup-node@v3
+        with:
+          node-version: 22.12
+      - name: install dependencies
+        run: npm install
+      - name: install dependencies
+        run: npm run build
