@@ -41,10 +41,8 @@ jobs:
        #     ${{ runner.os }}-node-${{ env.NODE_VERSION }}-
       - name: Run npm run build, typescript -> javascript
         run: npm run build
-        
      #  - name: install dependencies
      #    run:  npm install        
-
       - name: upload-dist 
         uses: actions/upload-artifact@v3
         with:
@@ -60,5 +58,10 @@ jobs:
         with:
           name: dist-folder
           path: ./dist  
-      - name: check dist
-        run: ls dist      
+      - name: Restore node_modules from cache
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ env.NODE_VERSION }}-${{ hashFiles('**/package-lock.json') }}
+      - name: check before docker
+        run: ls    
