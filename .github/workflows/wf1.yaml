@@ -29,8 +29,8 @@ jobs:
         with:
           node-version: 22.12
           cache: 'npm'
-      - run: npm ci  
-      # npm ci requires packge-lock.json
+      - run:  npm ci  
+      # npm ci  requires packge-lock.json
 
       - name: Restore node_modules from cache
         uses: actions/cache@v3
@@ -41,6 +41,6 @@ jobs:
             ${{ runner.os }}-node-${{ env.NODE_VERSION }}-
 
     #  - name: install dependencies
-    #    run: npm install
+    #    run:  npm install
       - name: Run npm run build, typescript -> javascript
         run: npm run build
