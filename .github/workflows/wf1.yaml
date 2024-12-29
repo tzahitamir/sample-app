@@ -18,29 +18,47 @@ env:
    # MONGO_PASSWORD: ${{ secrets.MONGO_PASSWORD }}
    
 jobs: 
-  hello-world:
+  install_deps_and_build:
     
     runs-on: ubuntu-latest
     steps:
       - name: checkout repo
         uses: actions/checkout@v4
+
       - name: Setup NodeJS v18
         uses: actions/setup-node@v3
         with:
           node-version: 22.12
           cache: 'npm'
-      - run:  npm ci  
-      # npm ci  requires packge-lock.json
+      - run:  npm ci  # npm ci  requires packge-lock.json
 
       - name: Restore node_modules from cache
         uses: actions/cache@v3
         with:
           path: node_modules
           key: ${{ runner.os }}-node-${{ env.NODE_VERSION }}-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: | 
-            ${{ runner.os }}-node-${{ env.NODE_VERSION }}-
-
-    #  - name: install dependencies
-    #    run:  npm install
+       #   restore-keys: | 
+       #     ${{ runner.os }}-node-${{ env.NODE_VERSION }}-
       - name: Run npm run build, typescript -> javascript
         run: npm run build
+        
+     #  - name: install dependencies
+     #    run:  npm install        
+
+      - name: upload-dist 
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist upload
+          path: ./dist
+
+  build_docker:
+    needs:  install_deps_and_build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download dist
+        uses: actions/download-artifact@v3
+        with:
+          name: upload-dist
+          path: ./dist  
+      - name: check dist
+        run: ls dist      
