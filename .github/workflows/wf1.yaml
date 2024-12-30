@@ -4,7 +4,7 @@ on:
   #workflow_dispatch allows for manual dispatch
   workflow_dispatch:
 
-    #this will run on push events
+  #this will run on push events
   push:
     branches:
       - main
@@ -63,5 +63,55 @@ jobs:
         with:
           path: node_modules
           key: ${{ runner.os }}-node-${{ env.NODE_VERSION }}-${{ hashFiles('**/package-lock.json') }}
-      - name: check before docker
-        run: ls    
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ECR_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_ECR_SECRET_ACCESS_KEY }}
+          aws-region: eu-west-2    
+      - name: Build and push Docker image
+        run: |
+          docker build . -t 713117837264.dkr.ecr.us-east-1.amazonaws.com/sample-app:$GITHUB_SHA --pull --force-rm --no-cache
+          docker push 713117837264.dkr.ecr.us-east-1.amazonaws.com/sample-app:$GITHUB_SHA
+
+#      - name: check before docker
+#        run: ls    
+
+#Retrieve  secret
+#steps:
+#  - name: Retrieve secret
+#    run: |
+#      SECRET=$(aws secretsmanager get-secret-value --secret-id my-secret --query SecretString --output text)
+#      echo "SECRET=$SECRET" >> $GITHUB_ENV
+
+#name: Build and Push to ECR
+
+#on:
+#  push:
+#    branches:
+#      - main
+
+#jobs:
+#  build-and-push:
+#    runs-on: ubuntu-latest
+
+#    steps:
+#      - name: Checkout repository
+#        uses: actions/checkout@v3
+
+#      - name: Log in to Amazon ECR
+#        uses: aws-actions/amazon-ecr-login@v1
+#        with:
+#          region: ${{ secrets.AWS_REGION }}
+
+#      - name: Build Docker image
+#        run: |
+#          docker build -t my-app .
+
+#      - name: Tag Docker image
+#        run: |
+#          docker tag my-app:latest <account_id>.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/my-app:latest
+
+#      - name: Push Docker image to ECR
+#        run: |
+#          docker push <account_id>.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/my-app:latest
