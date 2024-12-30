@@ -10,6 +10,7 @@ on:
       - main
       - 'feature/*'
       - production
+      - beta
 env:
   USERNAME:  ${{ vars.USERNAME }}
 
