@@ -51,7 +51,6 @@ jobs:
           path: ./dist
 
   build_docker:
-
     needs:  install_deps_and_build
     runs-on: ubuntu-latest
     steps:
@@ -82,16 +81,17 @@ jobs:
         uses: aws-actions/amazon-ecr-login@v1    
       
       - name: Build and push Docker image # add condition to build as Beta 
-         
         run: |
           if [[ "${GITHUB_REF}" == "refs/heads/production" ]]; then
+            echo $API_PROD_ENV_SECRETS > 1.txt
+            cat 1.txt
             docker build . -t 713117837264.dkr.ecr.eu-west-2.amazonaws.com/sample-app:$GITHUB_SHA --pull --force-rm --no-cache
             docker push 713117837264.dkr.ecr.eu-west-2.amazonaws.com/sample-app:$GITHUB_SHA
           else
             docker build . -t 713117837264.dkr.ecr.eu-west-2.amazonaws.com/sample-app-beta:$GITHUB_SHA --pull --force-rm --no-cache
             docker push 713117837264.dkr.ecr.eu-west-2.amazonaws.com/sample-app-beta:$GITHUB_SHA
           fi
-  deploy:
+  
     needs:  build_docker
     runs-on: ubuntu-latest
     steps:
@@ -112,6 +112,18 @@ jobs:
     - name: Update kubeconfig
       run: |
         aws eks update-kubeconfig --region eu-west-2 --name payplus
+
+    - name: Update CM
+      run: |
+        echo "Update CM"    
+
+    - name: check if deploy is already running
+      run: |
+        echo "check if deploy is already running"  
+
+    - name: prepare the deploy file
+      run: |
+        echo "prepare the deploy file"  
 
     - name: Deploy to EKS
       run: |
