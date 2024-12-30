@@ -73,8 +73,8 @@ jobs:
           aws-region: eu-west-2    
       - name: Build and push Docker image
         run: |
-          docker build . -t 713117837264.dkr.ecr.us-east-1.amazonaws.com/sample-app:$GITHUB_SHA --pull --force-rm --no-cache
-          docker push 713117837264.dkr.ecr.us-east-1.amazonaws.com/sample-app:$GITHUB_SHA
+          docker build . -t 713117837264.dkr.ecr.eu-west-2.amazonaws.com/sample-app:$GITHUB_SHA --pull --force-rm --no-cache
+          docker push 713117837264.dkr.ecr.eu-west-2.amazonaws.com/sample-app:$GITHUB_SHA
 
 #      - name: check before docker
 #        run: ls    
