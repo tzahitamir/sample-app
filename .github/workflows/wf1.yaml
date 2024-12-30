@@ -20,8 +20,7 @@ env:
 jobs: 
   install_deps_and_build:
     
-    #runs-on: ubuntu-latest
-    runs-on: ubuntu:latest-slim
+    runs-on: ubuntu-latest
     steps:
       - name: checkout repo
         uses: actions/checkout@v4
@@ -93,8 +92,7 @@ jobs:
           fi
   deploy:
     needs:  build_docker
-    #runs-on: ubuntu-latest
-    runs-on: ubuntu:latest-slim
+    runs-on: ubuntu-latest
     steps:
     
     - name: Configure AWS credentials
