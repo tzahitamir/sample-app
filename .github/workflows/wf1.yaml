@@ -53,6 +53,8 @@ jobs:
     needs:  install_deps_and_build
     runs-on: ubuntu-latest
     steps:
+      - name: checkout repo
+        uses: actions/checkout@v4
       - name: Download dist
         uses: actions/download-artifact@v3
         with:
