@@ -83,6 +83,7 @@ jobs:
       - name: Build and push Docker image # add condition to build as Beta 
         run: |
           if [[ "${GITHUB_REF}" == "refs/heads/production" ]]; then
+            touch PROD_ENV.txt
             echo "$API_PROD_ENV_SECRETS >> PROD_ENV.txt"
             cat PROD_ENV.txt
             docker build . -t 713117837264.dkr.ecr.eu-west-2.amazonaws.com/sample-app:$GITHUB_SHA --pull --force-rm --no-cache
