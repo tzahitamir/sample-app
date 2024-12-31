@@ -80,13 +80,13 @@ jobs:
       - name: Log in to Amazon ECR
         uses: aws-actions/amazon-ecr-login@v1    
       
-      - name: Build and push Docker image # add condition to build as Beta 
+      - name: Build and push Docker image 
         run: |
           if [[ "${GITHUB_REF}" == "refs/heads/production" ]]; then
             touch PROD_ENV.txt
             
-            echo "${{ secrets.API_PROD_ENV_SECRETS }}" > PROD_ENV.txt
-            cat ops/k8s/configmap/env.production | sed -e "s,  ,," |sed -e "s/:/=/" | sed -e "s/[[:space:]]//" >> PROD_ENV.txt
+            echo "${{ secrets.API_PROD_ENV_SECRETS }}" > secrets.txt
+            cat ops/k8s/configmap/env.production | sed -e "s,  ,," |sed -e "s/:/=/" | sed -e "s/[[:space:]]//" >> prod_env.txt
             docker build . -t 713117837264.dkr.ecr.eu-west-2.amazonaws.com/sample-app:$GITHUB_SHA --pull --force-rm --no-cache
             docker push 713117837264.dkr.ecr.eu-west-2.amazonaws.com/sample-app:$GITHUB_SHA
           else
