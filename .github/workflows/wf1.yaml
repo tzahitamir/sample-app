@@ -86,8 +86,7 @@ jobs:
             touch PROD_ENV.txt
             
             echo "${{ secrets.API_PROD_ENV_SECRETS }}" > PROD_ENV.txt
-            cat ops/k8s/configmap/env.production | sed -e "s,  ,," | sed -e \'s,: ",=,\' | sed -e "s/.$//" >> PROD_ENV.txt
-            #cat PROD_ENV.txt
+            cat ops/k8s/configmap/env.production | sed -e "s,  ,," |sed -e "s/:/=/" | sed -e "s/[[:space:]]//" >> PROD_ENV.txt
             docker build . -t 713117837264.dkr.ecr.eu-west-2.amazonaws.com/sample-app:$GITHUB_SHA --pull --force-rm --no-cache
             docker push 713117837264.dkr.ecr.eu-west-2.amazonaws.com/sample-app:$GITHUB_SHA
           else
