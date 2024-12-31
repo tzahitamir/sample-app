@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: sample-app-cm
+data:
+  #tzahi: aa
+  pp-env: "production"
+  NODE_ENV: "prod"
+  DB_CORE_HOST: "db-2.cspe6fy9ifb2.eu-west-2.rds.amazonaws.com"
+  DB_CORE_PORT: "3306"
+  DB_CORE_USERNAME: "rds_payplus_prod"
+  DB_CORE_DATABASE: "payplus_prod"
+  PORT: "3000"
+  SENTRY_DSN: "https://481b2dbdf19443e79e4cacdb202ff589@o261297.ingest.sentry.io/6439008"
+  KAFKA_CLIENT_ID: "payplus-client"
+  KAFKA_BROKER: "b-2.kafkaprod.5bn19l.c3.kafka.eu-west-2.amazonaws.com:9092,b-3.kafkaprod.5bn19l.c3.kafka.eu-west-2.amazonaws.com:9092,b-1.kafkaprod.5bn19l.c3.kafka.eu-west-2.amazonaws.com:9092"
+  REDIS_URL: "redis://172.31.54.15:6379"
+  NUM_OF_PARTITIONS: "1"
+  REPLICATION_FACTOR: "3"
+  AWS_REGION: "eu-central-1"
+  KAFKA_RETENTION_MS: "604800000"
+  SMS_URL: "https://pps.ms"
+  API_URL_PIXEL: "https://restapiexternal.payplus.co.il/api/email/pixel.png"
+  REST_API: "https://restapiexternal.payplus.co.il/api"
+  MULTISEND_USERNAME: "payplus"
+  MULTISEND_API: "https://api.multisend.co.il/v2/sendjson"
+  MULTISEND_BULK_SIZE: "5000"
+  VERIFONE_INVOICE_URL: "https://wst.terminalx.com/R360.Server.IIS/services/services.asmx?WSDL"
