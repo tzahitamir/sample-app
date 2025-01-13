@@ -1,27 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: payplus-kafka-deployment
+  name: sample-app-deployment
   labels:
-    app: payplus-kafka-deployment
+    app: sample-app-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: payplus-kafka-deployment
+      app: sample-app-deployment
   template:
     metadata:
       labels:
-        app: payplus-kafka-deployment
+        app: sample-app-deployment
     spec:
       containers:
-      - name: payplus-kafka-deployment
+      - name: sample-app-deployment
         image: imagename
         envFrom:
           - configMapRef:
-              name: kafka-cm
+              name: sample-app-cm
         env:
-        - name: TOPIC
-          value: all
         - name: MODE
           value: "beta"
