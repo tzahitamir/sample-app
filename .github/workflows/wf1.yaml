@@ -1,5 +1,4 @@
 # name: Sample app workflow
-
 # on: 
 #   #workflow_dispatch allows for manual dispatch
 #   workflow_dispatch:
