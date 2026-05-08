@@ -21,3 +21,10 @@ spec:
         image: 713117837264.dkr.ecr.eu-west-2.amazonaws.com/sample-app:latest
         ports:
         - containerPort: 8000
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "100m"
+          requests:
+            memory: "64Mi"
+            cpu: "100m"
