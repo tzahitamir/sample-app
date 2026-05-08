@@ -1,0 +1,66 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: payplus-kafka-deployment-sms
+  labels:
+    app: payplus-kafka-deployment-sms
+    tags.datadoghq.com/env: beta
+    tags.datadoghq.com/service: kafka-sms
+    tags.datadoghq.com/version: "1"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: payplus-kafka-deployment-sms
+  template:
+    metadata:
+      labels:
+        app: payplus-kafka-deployment-sms
+        tags.datadoghq.com/env: beta
+        tags.datadoghq.com/service: kafka-sms
+        tags.datadoghq.com/version: "1"
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+               - key: pub-sub
+                 operator: NotIn
+                 values:
+                 - "yes"
+      containers:
+      - name: payplus-kafka-deployment-sms
+        image: imagename
+        envFrom:
+          - configMapRef:
+              name: kafka-cm
+        env:
+        - name: DD_ENV
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.labels['tags.datadoghq.com/env']
+        - name: DD_SERVICE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.labels['tags.datadoghq.com/service']
+        - name: DD_VERSION
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.labels['tags.datadoghq.com/version']
+        - name: DD_AGENT_HOST
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: status.hostIP
+        - name: DD_LOGS_INJECTION
+          value: "true"
+        - name: DD_RUNTIME_METRICS_ENABLED
+          value: "true"
+        - name: TOPIC
+          value: sms
+        - name: MODE
+          value: "beta"
