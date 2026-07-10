@@ -1,3 +1,4 @@
+#This is my test lambda function. It will be deployed to AWS Lambda and invoked from a GitHub Actions workflow.
 import json
 
 def lambda_handler(event, context):
