@@ -17,7 +17,7 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: arn:aws:iam::890387921239:role/gh-dev-role
-          aws-region: eu-east-1
+          aws-region: us-east-1
 
       - name: Invoke Lambda
         run: |
