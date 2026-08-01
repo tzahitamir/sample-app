@@ -1,5 +1,6 @@
 ##sample app
-FROM node:19.3.0-bullseye
+#FROM node:19.3.0-bullseye
+FROM node:24-bookworm-slim
 RUN export DEBIAN_FRONTEND=noninteractive \
 && apt-get update -qq \
 && apt-get install -y -qq --no-install-recommends apt-transport-https curl vim \
