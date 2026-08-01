@@ -1,0 +1,64 @@
+name: Build and deploy
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  id-token: write
+  contents: read
+
+env:
+  AWS_REGION: us-east-1
+  ECR_REPOSITORY: 890387921239.dkr.ecr.us-east-1.amazonaws.com/sample-app
+  GITOPS_REPO: tzahitamir/gitops
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout sample-app
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::890387921239:role/sample-app-ci-role
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Log in to Amazon ECR
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Build and push image
+        id: build
+        run: |
+          IMAGE_TAG="${GITHUB_SHA::7}"
+          docker build -t "${ECR_REPOSITORY}:${IMAGE_TAG}" .
+          docker push "${ECR_REPOSITORY}:${IMAGE_TAG}"
+          echo "image_tag=${IMAGE_TAG}" >> "$GITHUB_OUTPUT"
+
+      - name: Checkout gitops
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ env.GITOPS_REPO }}
+          token: ${{ secrets.GITOPS_PAT }}
+          path: gitops
+
+      - name: Bump image tag in gitops chart
+        run: |
+          sed -i "s/^  tag: .*/  tag: ${{ steps.build.outputs.image_tag }}/" \
+            gitops/charts/sample-app/values.yaml
+
+      - name: Open PR in gitops
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITOPS_PAT }}
+          path: gitops
+          branch: sample-app-deploy-${{ steps.build.outputs.image_tag }}
+          title: "deploy: sample-app ${{ steps.build.outputs.image_tag }}"
+          commit-message: "Bump sample-app image to ${{ steps.build.outputs.image_tag }}"
+          body: |
+            Automated deploy PR from tzahitamir/sample-app@${{ github.sha }}
+
+            Image: `${{ env.ECR_REPOSITORY }}:${{ steps.build.outputs.image_tag }}`
